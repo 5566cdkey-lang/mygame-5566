@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>人間推理師</title>
+  <title>人間推理師 v2</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,7 +31,6 @@
       padding-bottom: 80px;
     }
 
-    /* Header */
     .header {
       background: var(--navy);
       padding: 16px 20px;
@@ -44,41 +43,17 @@
       z-index: 100;
     }
 
-    .header-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--amber);
-      letter-spacing: 2px;
-    }
+    .header-title { font-size: 18px; font-weight: 700; color: var(--amber); letter-spacing: 2px; }
+    .header-streak { background: var(--amber); color: var(--navy); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
 
-    .header-streak {
-      background: var(--amber);
-      color: var(--navy);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    /* Banner */
     .banner {
       background: linear-gradient(135deg, var(--navy), #1a365d);
       padding: 24px 20px 16px;
       text-align: center;
     }
 
-    .banner-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .banner-sub {
-      font-size: 13px;
-      color: var(--text-dim);
-    }
-
+    .banner-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .banner-sub { font-size: 13px; color: var(--text-dim); }
     .streak-days {
       display: inline-flex;
       align-items: center;
@@ -92,9 +67,8 @@
       margin-top: 12px;
     }
 
-    /* Question Card */
     .question-card {
-      margin: 16px 16px;
+      margin: 16px 16px 0;
       background: var(--card);
       border-radius: 16px;
       overflow: hidden;
@@ -109,98 +83,26 @@
       border-bottom: 1px solid var(--navy-light);
     }
 
-    .question-tag {
-      background: var(--amber);
-      color: var(--navy);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 12px;
-    }
+    .question-tag { background: var(--amber); color: var(--navy); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+    .question-num { font-size: 12px; color: var(--text-dim); }
 
-    .question-num {
-      font-size: 12px;
-      color: var(--text-dim);
-    }
+    .question-content { padding: 16px; }
+    .question-type { font-size: 11px; color: var(--amber); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px; }
+    .question-title { font-size: 16px; font-weight: 700; line-height: 1.5; color: var(--text); margin-bottom: 12px; }
 
-    .question-content {
-      padding: 16px;
-    }
-
-    .question-type {
-      font-size: 11px;
-      color: var(--amber);
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .question-text {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text);
-    }
-
-    /* Screenshot mock */
-    .screenshot-mock {
-      background: #111;
-      border-radius: 12px;
-      margin: 12px 0;
-      overflow: hidden;
-      border: 1px solid #333;
-    }
-
-    .screenshot-header {
-      background: #1a1a1a;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #333;
-    }
-
-    .screenshot-dots {
-      display: flex;
-      gap: 4px;
-    }
-
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
-    .dot-red { background: #FF5F57; }
-    .dot-yellow { background: #FEBC2E; }
-    .dot-green { background: #28C840; }
-
-    .screenshot-title {
-      font-size: 10px;
-      color: var(--text-dim);
-      margin-left: 4px;
-    }
-
-    .screenshot-body {
-      padding: 12px;
-    }
-
-    .screenshot-text {
+    .scenario-box {
+      background: #0a0f1d;
+      border-left: 3px solid var(--amber);
+      padding: 12px 14px;
+      border-radius: 8px;
       font-size: 13px;
       line-height: 1.8;
-      color: #e0e0e0;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      font-family: -apple-system, monospace;
     }
 
-    .screenshot-time {
-      font-size: 11px;
-      color: #666;
-      margin-top: 8px;
-    }
-
-    .screenshot-likes {
-      font-size: 11px;
-      color: #888;
-      margin-top: 6px;
-    }
-
-    /* Options */
-    .options {
-      padding: 0 16px 20px;
-    }
+    .options { padding: 16px; padding-top: 0; }
 
     .option-btn {
       width: 100%;
@@ -226,14 +128,14 @@
     .option-btn.disabled { pointer-events: none; }
 
     .option-letter {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--navy-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       flex-shrink: 0;
     }
@@ -242,56 +144,91 @@
     .option-btn.wrong .option-letter { background: var(--red); color: white; }
     .option-btn.selected .option-letter { background: var(--amber); color: var(--navy); }
 
-    /* Result Panel */
-    .result-panel {
-      display: none;
-      margin: 0 16px 16px;
-      border-radius: 16px;
+    .result-section { padding: 0 16px 16px; }
+    .result-section.hidden { display: none; }
+
+    .user-choice-card {
+      border-radius: 14px;
       overflow: hidden;
-      border: 1px solid;
+      margin-bottom: 12px;
     }
 
-    .result-panel.show { display: block; }
-    .result-panel.correct { background: rgba(16,185,129,0.08); border-color: var(--green); }
-    .result-panel.wrong { background: rgba(239,68,68,0.08); border-color: var(--red); }
+    .user-choice-card.correct { background: rgba(16,185,129,0.1); border: 1px solid var(--green); }
+    .user-choice-card.wrong { background: rgba(239,68,68,0.1); border: 1px solid var(--red); }
 
-    .result-header {
+    .user-choice-header {
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 16px;
+      border-bottom: 1px solid;
     }
 
-    .result-emoji { font-size: 24px; }
-    .result-label { font-size: 15px; font-weight: 700; }
-    .result-panel.correct .result-label { color: var(--green); }
-    .result-panel.wrong .result-label { color: var(--red); }
+    .user-choice-card.correct .user-choice-header { border-color: rgba(16,185,129,0.2); }
+    .user-choice-card.wrong .user-choice-header { border-color: rgba(239,68,68,0.2); }
 
-    .result-analysis {
-      padding: 0 16px 16px;
-      border-top: 1px solid;
-    }
+    .result-icon { font-size: 22px; }
+    .result-label { font-size: 15px; font-weight: 700; flex: 1; }
+    .user-choice-card.correct .result-label { color: var(--green); }
+    .user-choice-card.wrong .result-label { color: var(--red); }
 
-    .result-panel.correct .result-analysis { border-color: rgba(16,185,129,0.2); }
-    .result-panel.wrong .result-analysis { border-color: rgba(239,68,68,0.2); }
-
-    .analysis-title {
-      font-size: 12px;
-      color: var(--amber);
-      font-weight: 600;
-      margin: 10px 0 6px;
-    }
-
-    .analysis-text {
+    .user-choice-text {
+      padding: 12px 16px;
       font-size: 13px;
-      line-height: 1.7;
+      color: var(--text);
+      font-weight: 500;
+      border-bottom: 1px solid;
+    }
+
+    .user-choice-card.correct .user-choice-text { border-color: rgba(16,185,129,0.2); }
+    .user-choice-card.wrong .user-choice-text { border-color: rgba(239,68,68,0.2); }
+
+    .user-feedback {
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.8;
       color: var(--text-dim);
     }
 
-    /* Share */
-    .share-section {
-      padding: 0 16px 16px;
+    .correct-answer-card {
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.4);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
     }
+
+    .correct-answer-card .header-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .correct-tag { background: var(--green); color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+    .correct-text { font-size: 14px; color: var(--green); font-weight: 700; }
+
+    .insight-card {
+      background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.05));
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .insight-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .insight-icon { font-size: 18px; }
+    .insight-title { font-size: 13px; color: var(--amber); font-weight: 700; }
+    .insight-text { font-size: 13px; line-height: 1.7; color: var(--text-dim); }
+
+    .share-section { padding: 0 16px 16px; }
+    .share-section.hidden { display: none; }
 
     .share-btn {
       width: 100%;
@@ -307,12 +244,8 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.1s;
     }
 
-    .share-btn:active { transform: scale(0.98); }
-
-    /* Next button */
     .next-btn {
       width: calc(100% - 32px);
       margin: 0 16px 16px;
@@ -328,9 +261,6 @@
       text-align: center;
     }
 
-    .next-btn:active { transform: scale(0.98); }
-
-    /* Tab bar */
     .tab-bar {
       position: fixed;
       bottom: 0;
@@ -357,17 +287,14 @@
       padding: 4px 16px;
       border: none;
       background: none;
-      transition: color 0.2s;
     }
 
     .tab-item.active { color: var(--amber); }
     .tab-icon { font-size: 22px; }
 
-    /* Page sections */
     .page { display: none; }
     .page.active { display: block; }
 
-    /* Profile page */
     .profile-card {
       margin: 16px;
       background: var(--card);
@@ -389,24 +316,9 @@
       margin: 0 auto 12px;
     }
 
-    .profile-name {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .profile-title {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-    }
-
-    .profile-stats {
-      display: flex;
-      justify-content: space-around;
-      border-top: 1px solid var(--navy-light);
-      padding-top: 16px;
-    }
+    .profile-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .profile-title { font-size: 12px; color: var(--text-dim); margin-bottom: 16px; }
+    .profile-stats { display: flex; justify-content: space-around; border-top: 1px solid var(--navy-light); padding-top: 16px; }
 
     .stat-item { text-align: center; }
     .stat-num { font-size: 22px; font-weight: 700; color: var(--amber); }
@@ -423,10 +335,7 @@
       margin-top: 14px;
     }
 
-    /* Archive page */
-    .archive-list {
-      padding: 0 16px;
-    }
+    .archive-list { padding: 0 16px; }
 
     .archive-item {
       background: var(--card);
@@ -439,16 +348,7 @@
       gap: 12px;
     }
 
-    .archive-q {
-      font-size: 13px;
-      color: var(--text-dim);
-      flex: 1;
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+    .archive-q { font-size: 13px; color: var(--text-dim); flex: 1; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
     .archive-result {
       font-size: 12px;
@@ -461,39 +361,44 @@
     .archive-result.correct { background: rgba(16,185,129,0.2); color: var(--green); }
     .archive-result.wrong { background: rgba(239,68,68,0.2); color: var(--red); }
 
-    /* Animations */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .question-card { animation: slideUp 0.3s ease; }
 
-    @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes popIn { 0% { transform: scale(0.95); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .result-section:not(.hidden) { animation: popIn 0.3s ease; }
+
+    .loading { text-align: center; padding: 60px 20px; color: var(--text-dim); font-size: 14px; }
+
+    .style-breakdown {
+      margin: 0 16px 16px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--navy-light);
     }
 
-    .result-panel.show { animation: popIn 0.3s ease; }
-
-    /* Loading */
-    .loading {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-dim);
-      font-size: 14px;
+    .style-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--navy-light);
     }
+
+    .style-row:last-child { border-bottom: none; }
+    .style-name { font-size: 13px; color: var(--text); }
+    .style-bar { flex: 1; margin: 0 12px; height: 6px; background: var(--navy-light); border-radius: 3px; overflow: hidden; }
+    .style-bar-fill { height: 100%; background: var(--amber); transition: width 0.5s; }
+    .style-pct { font-size: 12px; color: var(--amber); font-weight: 700; min-width: 36px; text-align: right; }
   </style>
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
   <div class="header-title">👁️ 人間推理師</div>
   <div class="header-streak" id="streakBadge">🔥 第1天</div>
 </div>
 
-<!-- ============ 主頁 ============ -->
 <div class="page active" id="page-home">
   <div class="banner">
     <div class="banner-title">今日推理題</div>
@@ -501,17 +406,15 @@
     <div class="streak-days" id="streakDisplay">🔥 連續打卡 1 天</div>
   </div>
 
-  <!-- Question Area -->
   <div id="questionArea">
     <div class="loading">正在加載題目...</div>
   </div>
 </div>
 
-<!-- ============ 檔案頁 ============ -->
 <div class="page" id="page-profile">
   <div class="profile-card">
     <div class="profile-avatar">🧠</div>
-    <div class="profile-name" id="profileName">推理菜鳥</div>
+    <div class="profile-name" id="profileName">推理見習生</div>
     <div class="profile-title">人間觀察者</div>
     <div class="profile-stats">
       <div class="stat-item">
@@ -527,16 +430,20 @@
         <div class="stat-label">連續天數</div>
       </div>
     </div>
-    <div class="profile-tag" id="profileTag">等待解鎖你的性格標籤</div>
+    <div class="profile-tag" id="profileTag">完成 3 題解鎖你的專屬標籤</div>
   </div>
 
-  <div style="margin: 16px; background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid var(--navy-light);">
-    <div style="font-size: 13px; color: var(--amber); font-weight: 600; margin-bottom: 8px;">🏷️ 你的推理風格</div>
-    <div style="font-size: 13px; color: var(--text-dim); line-height: 1.7;" id="styleText">完成10道題後解鎖...</div>
+  <div class="style-breakdown" id="styleBreakdown" style="display:none;">
+    <div style="font-size: 13px; color: var(--amber); font-weight: 700; margin-bottom: 12px;">📊 你的推理風格分析</div>
+    <div id="styleRows"></div>
+  </div>
+
+  <div class="style-breakdown">
+    <div style="font-size: 13px; color: var(--amber); font-weight: 700; margin-bottom: 8px;">🎯 選擇傾向</div>
+    <div style="font-size: 13px; line-height: 1.7; color: var(--text-dim);" id="preferenceText">完成更多題目後解鎖...</div>
   </div>
 </div>
 
-<!-- ============ 歷史頁 ============ -->
 <div class="page" id="page-history">
   <div style="padding: 16px 16px 8px; font-size: 13px; color: var(--text-dim);">答題記錄</div>
   <div class="archive-list" id="historyList">
@@ -544,7 +451,6 @@
   </div>
 </div>
 
-<!-- Tab Bar -->
 <div class="tab-bar">
   <button class="tab-item active" onclick="switchTab('home')">
     <div class="tab-icon">🏠</div>
@@ -561,202 +467,420 @@
 </div>
 
 <script>
-// ============ 題庫 ============
+// ============ 題庫 v2 ============
 const questions = [
-  // 朋友圈推理
   {
     id: 1,
-    category: "朋友圈截圖推理",
+    category: "微信潛台詞",
     level: "Lv.1",
-    type: "朋友圈",
-    text: "這條朋友圈透露了什麼？",
-    scenario: `一位好友發了這樣的朋友圈：
-「重慶｜22:37
-🧣 冬天就該吃火鍋
-[圖] 近拍麻辣火鍋湯底，冒著熱氣
-[圖] 九宮格蘸料碟
-👍 張偉、李娜、陳總、王姐、HR劉
-💬 李娜：減肥人士表示受到了暴擊 😂
-💬 王姐：這家在哪？求地址！`,
+    type: "對話",
+    title: "老闆凌晨2點給你發『睡了嗎』，到底想說什麼？",
+    scenario: `【微信對話】
+
+老闆  02:17
+睡了嗎？
+
+你    [未讀]`,
     options: [
-      { letter: "A", text: "美食博主 / KOC" },
-      { letter: "B", text: "普通上班族，偶然記錄生活" },
-      { letter: "C", text: "保險 / 直銷從業者，在維護客戶關係" },
-      { letter: "D", text: "在重慶出差的業務人員" }
+      {
+        letter: "A",
+        text: "他要派緊急任務給我",
+        feedback: "你的第一反應是工作。但你忽略了一個關鍵：真正的緊急任務老闆會直接打電話，不會用微信。'睡了嗎'這種問候式的開頭，背後藏著的不是任務，是孤獨。"
+      },
+      {
+        letter: "B",
+        text: "他只是隨口問問，沒什麼意思",
+        feedback: "你把領導當工具人——覺得他的話都應該有目的。但凌晨2點還在手機上打字的人，內心一定有困擾。'隨口'問候背後的訊號，你完全沒接住。"
+      },
+      {
+        letter: "C",
+        text: "他心裡有事想找人說話",
+        isCorrect: true,
+        feedback: "你看穿了職場關係的本質。但這裡有個隱藏風險——回錯了可能變成他的情緒垃圾桶，不回又顯得冷漠。最佳回覆是：'還沒，您也早點休息，有事您說。'"
+      },
+      {
+        letter: "D",
+        text: "他喝醉了，發錯人了",
+        feedback: "你也太自戀了，誰會發醉話給下屬？就算喝醉了，現在的人都會馬上撤回，不會留下來。這說明你習慣了'事情都和自己無關'的防禦姿態。"
+      }
     ],
-    correct: "C",
-    analysis: "信號：1) 點讚名單包含「陳總」+「HR劉」，這是典型的工作關係維護組合。2) 王姐立刻問地址，說明這不是隨手發的，是有意引導互動。3) 晚上10:37發，是黃金時段，目的就是讓最多人看到。普通人不會這樣精準地安排點讚名單和發佈時間。"
+    insight: "👤 選 A 的人責任心強但容易過勞；選 B 的人理性但有距離感；選 D 的人自我保護過度。"
   },
   {
     id: 2,
-    category: "朋友圈截圖推理",
+    category: "朋友圈拼圖",
     level: "Lv.2",
     type: "朋友圈",
-    text: "這個人目前最可能處於什麼狀態？",
-    scenario: `一位好友發了這樣的朋友圈：
-「又失眠了
-3:15 AM」
-（無圖，無點讚，無評論）`,
+    title: "三天內的三條朋友圈，能拼湊出什麼故事？",
+    scenario: `三天內的三條朋友圈：
+
+━━━━ Day 1（週五 19:30）━━━━
+[圖] 一杯精緻的下午茶，背景是落地窗
+配文：「週五的快樂 ☕️」
+
+━━━━ Day 2（週六 14:00）━━━━
+[圖] 同一個落地窗的位置，桌上只有一杯白水
+配文：「......」
+
+━━━━ Day 3（週日 09:15）━━━━
+[圖] 一本書的封面《如何優雅地離開》
+配文：「長大」`,
     options: [
-      { letter: "A", text: "單身獨居年輕人，純粹熬夜" },
-      { letter: "B", text: "哺乳期媽媽" },
-      { letter: "C", text: "剛分手 / 失戀中" },
-      { letter: "D", text: "創業老闆，焦慮中" }
+      {
+        letter: "A",
+        text: "被公司裁員了",
+        feedback: "你的思路是從『長大』聯想到職場。但裁員的標配朋友圈是『新的開始』，不是『如何優雅地離開』。而且前兩天還在悠閒喝下午茶，不符合突發失業的軌跡。"
+      },
+      {
+        letter: "B",
+        text: "失戀了",
+        isCorrect: true,
+        feedback: "你看穿了。Day1 的下午茶可能是對方請的最後一頓，Day2 同一個位置但變白水是物是人非，Day3 那本書『優雅地離開』是失戀者最愛的文案。但你也有盲點：這種朋友圈通常 3-7 天後會刪。"
+      },
+      {
+        letter: "C",
+        text: "創業失敗了",
+        feedback: "你對創業的印象還停留在『意氣風發』，但失敗的標配朋友圈是『沉澱』『歸零』這類詞。創業失敗的人會假裝堅強，不會用『優雅』這種文藝的詞。"
+      },
+      {
+        letter: "D",
+        text: "家裡出事了（父母生病）",
+        feedback: "你腦補太多。這種情況下的人通常會直接關閉朋友圈，不會連續三天發。而且『優雅地離開』跟家庭變故的沉重感完全不匹配——你的解讀太戲劇化了。"
+      }
     ],
-    correct: "B",
-    analysis: "信號：1) 凌晨3:15這個精確時間，不是玩手機忘了睡，是被動醒來。2) 哺乳期媽媽夜間餵奶是典型作息。3) 無圖+無互動，說明此刻連發朋友圈都是掙扎著發的，無力美化內容。失戀/焦慮通常會有更多情緒化的文字表達。"
+    insight: "🎭 選對的人通常感情經歷豐富，能識別『朋友圈的沉默比文字更響』這個規律。"
   },
   {
     id: 3,
-    category: "朋友圈截圖推理",
-    level: "Lv.3",
-    type: "朋友圈",
-    text: "這個人最可能從事什麼職業？",
-    scenario: `一位好友發了這樣的朋友圈：
-「成長感悟
-以前覺得「會說話」很重要
-現在覺得「不說話」才是真正的厲害
-[圖] 一張禪意茶杯照，茶湯清澈
-#女性成長 #職場感悟
-9:02 AM · 中國香港`,
+    category: "餐桌心理學",
+    level: "Lv.2",
+    type: "場景",
+    title: "兩個人去餐廳吃飯，從點的東西能看出什麼？",
+    scenario: `兩人晚餐——
+
+👨 男方點的：
+• 黑咖啡
+• 凱撒沙拉
+• 清蒸鱸魚
+
+👩 女方點的：
+• 一杯珍珠奶茶
+• 提拉米蘇
+• 芝士焗飯`,
     options: [
-      { letter: "A", text: "心理諮詢師 / 情感博主" },
-      { letter: "B", text: "企業高管 / 創業者" },
-      { letter: "C", text: "公關 / 品牌總監" },
-      { letter: "D", text: "全職媽媽" }
+      {
+        letter: "A",
+        text: "剛在一起，男方在裝健康",
+        feedback: "你對約會有刻板印象——覺得男人要表現得自律。但『裝』這個字說明你把男方當綠茶了。其實很多人日常就是這樣吃飯，跟裝不裝無關。"
+      },
+      {
+        letter: "B",
+        text: "已結婚多年，生活習慣差異",
+        isCorrect: true,
+        feedback: "你看穿了餐桌政治。如果是約會，男女都會遷就對方，不會點反差這麼大的組合。只有在長期關係裡，雙方都懶得再偽裝，才會按自己真實喜好點。咖啡+沙拉+鱸魚 = 養生中年人；奶茶+甜品+芝士飯 = 還沒被歲月毒打過。"
+      },
+      {
+        letter: "C",
+        text: "這是商業飯局",
+        feedback: "商業飯局不會去能單點這麼多菜的地方，更可能是大桌中餐。而且商業場合不會一個喝咖啡、一個喝奶茶這麼隨意——太休閒了，不像在談事。"
+      },
+      {
+        letter: "D",
+        text: "女方在減肥失敗的循環中",
+        feedback: "你把一頓飯做成了心理分析，有點過度解讀。提拉米蘇+芝士焗飯一起點，要麼是不知道熱量，要麼是不在乎，不一定是『循環減肥』。你的腦補暴露了你自己對身材的焦慮。"
+      }
     ],
-    correct: "B",
-    analysis: "信號：1) 早上9:02從中國香港發，這是高管/創業者標配的出差地點。2) 內容深度明顯高於普通人的「今天好累」，有獨立思考沉澱。3) 禪意茶杯照是中高層管理者展示「從容感」的常見手法。4) 標籤#女性成長+#職場感悟，目標受眾明顯是同行或下屬，打造個人IP型高管。"
+    insight: "🍽️ 選 A 的人對親密關係有浪漫濾鏡；選 D 的人對體重比較敏感。"
   },
-  // Emoji密碼
   {
     id: 4,
-    category: "Emoji密碼破譯",
+    category: "Emoji密碼",
     level: "Lv.1",
     type: "Emoji",
-    text: "猜電影",
-    scenario: `🎒 🏔️ 🧊 👦 👧`,
+    title: "🛏️ 📱 🔦 😴 描述的是什麼心理狀態？",
+    scenario: `4 個 emoji，描述一個心理狀態：
+
+🛏️ 📱 🔦 😴`,
     options: [
-      { letter: "A", text: "《冰雪奇緣》" },
-      { letter: "B", text: "《冰川時代》" },
-      { letter: "C", text: "《飛屋環遊記》" },
-      { letter: "D", text: "《登珠峰的人》" }
+      {
+        letter: "A",
+        text: "失眠",
+        feedback: "你看到了『睡不著』的表層，但這組 emoji 的關鍵是 🔦——手機屏幕的光。如果真是失眠，不會在黑暗裡開手機。這個細節你漏了。"
+      },
+      {
+        letter: "B",
+        text: "睡前刷手機",
+        isCorrect: true,
+        feedback: "你看穿了！🛏️ 躺著、📱 手機、🔦 屏幕光、😴 假裝困。99% 的人都經歷過——明明說早睡，結果刷了兩小時。這題的難點是 🔦 容易被忽略。"
+      },
+      {
+        letter: "C",
+        text: "熬夜趕工作",
+        feedback: "你把這個場景想得太嚴肅了。如果是趕工作，emoji 會有 💻 電腦或者 📊 圖表，不會有 🛏️ 床。而且 😴 是『想睡』不是『想睡但不能』。"
+      },
+      {
+        letter: "D",
+        text: "夢遊",
+        feedback: "夢遊的人不會有意識地組合 emoji。這個選項暴露了你有時候會用『玄幻』解釋日常問題的傾向。"
+      }
     ],
-    correct: "C",
-    analysis: "🎒背包=出發，🏔️高山=目的地，🧊冰=氣候挑戰，👦👧=一老一少。《飛屋環遊記》的核心元素就是帶著房子去冒險的一老一少組合。"
+    insight: "📱 這題大部分人都能選對，關鍵是能否看出 🔦 才是核心信號。"
   },
   {
     id: 5,
-    category: "Emoji密碼破譯",
-    level: "Lv.1",
+    category: "Emoji密碼",
+    level: "Lv.2",
     type: "Emoji",
-    text: "猜職業",
-    scenario: `💰 📊 📈 👔 🏢`,
+    title: "👑 🐔 👨 = ?",
+    scenario: `三個 emoji，猜一個網絡流行詞：
+
+👑 🐔 👨`,
     options: [
-      { letter: "A", text: "會計師" },
-      { letter: "B", text: "投資銀行家" },
-      { letter: "C", text: "保險業務員" },
-      { letter: "D", text: "創業失敗者" }
+      {
+        letter: "A",
+        text: "雞你太美（蔡徐坤梗）",
+        isCorrect: true,
+        feedback: "你看穿了一切。👑 雞冠 + 🐔 雞 + 👨 坤（諧音梗）。這個梗在 2018-2019 年達到頂峰，能秒答的人暴露了年齡——大概率是 95 後或者深度互聯網用戶。"
+      },
+      {
+        letter: "B",
+        text: "雞冠頭髮型",
+        feedback: "你只看到了字面意思。👑 確實是雞冠，但 🐔 + 👨 一起出現，不是『發型』這個詞能概括的。網絡流行語通常會包含動作或場景，純描述的選項一般不對。"
+      },
+      {
+        letter: "C",
+        text: "雞娃家長（教育焦慮）",
+        feedback: "你對『雞娃』這個詞很敏感，但 emoji 裡沒有『娃』或者『家長』的暗示。👨 是成年男性，不是家長形象。你的敏感度用錯了地方。"
+      },
+      {
+        letter: "D",
+        text: "我真的不知道",
+        feedback: "誠實是好事，但也說明你不在這個梗的受眾圈。不過不影響——你不需要知道所有網絡梗。知道『自己不知道』本身也是一種能力。"
+      }
     ],
-    correct: "B",
-    analysis: "💰錢+📊數據+📈增長+👔西裝+🏢辦公室，這是華爾街/投行從業者的標準符號組合。會計師不需要📈增長視角，保險業務員更偏個人销售画像。"
+    insight: "🎵 選 A 的人估計 25-35 歲，能秒答說明是衝浪達人。"
   },
   {
     id: 6,
-    category: "Emoji密碼破譯",
-    level: "Lv.2",
-    type: "Emoji",
-    text: "猜一個中國成語",
-    scenario: `🐔 🐔 🐔 🐔 🐔 🐔 🐔 🐔 🐔`,
+    category: "備忘錄心理學",
+    level: "Lv.3",
+    type: "備忘錄",
+    title: "手機備忘錄裡的清單，藏著什麼秘密？",
+    scenario: `打開一個人的手機備忘錄，發現這個清單：
+
+━━━━ 📋 待辦清單 ━━━━
+• 媽媽生日 5/12，紅包 800
+• 老張兒子 5/6 滿月酒，1000
+• 公司王姐升職，鮮花+蛋糕
+• 自己：想要什麼？想了很久沒寫
+
+━━━━ 💰 開銷追蹤 ━━━━
+• 5月 房租 3500
+• 5月 餐飲 2200
+• 5月 給爸媽 3000
+• 5月 自己：0`,
     options: [
-      { letter: "A", text: "聞雞起舞" },
-      { letter: "B", text: "雞犬不寧" },
-      { letter: "C", text: "鶴立雞群" },
-      { letter: "D", text: "呆若木雞" }
+      {
+        letter: "A",
+        text: "太摳門，紅包都不夠",
+        feedback: "你的判斷停留在『金額夠不夠』，但你忽略了重點：備忘錄裡的『自己』欄位是空的。這說明他不是摳，是根本沒想過自己需要什麼。"
+      },
+      {
+        letter: "B",
+        text: "太周到，沒有自我",
+        isCorrect: true,
+        feedback: "你看穿了。這個清單是教科書級的『利他型人格』——記得所有人的事，但忘了自己的；給所有人花錢，自己那一欄是 0。這種人在職場被叫『老好人』，在家被叫『懂事的孩子』，但內心最累。"
+      },
+      {
+        letter: "C",
+        text: "記性不好，總是忘",
+        feedback: "你忽略了——這個人的備忘錄整理得非常細，連金額都記得清清楚楚。這不是記性問題，是注意力分配的問題：他記住了別人，卻沒給自己分配注意力。"
+      },
+      {
+        letter: "D",
+        text: "收入太低，入不敷出",
+        feedback: "從數字看，他給爸媽 3000、房租 3500，說明收入至少 1.5 萬以上。這不是財務問題，是消費習慣問題——他把所有的錢都花在了『別人』身上。"
+      }
     ],
-    correct: "D",
-    analysis: "9隻🐔排在一起，全部呆住了——數量暗示「全體靜止」的狀態。「呆若木雞」原意是訓練有素的鬥雞達到不動如山的境界，現在引申為嚇呆了。"
+    insight: "🪞 選 B 的人通常自己就是這種人，或者身邊有這樣的人。"
   },
   {
     id: 7,
-    category: "Emoji密碼破譯",
+    category: "朋友圈玄學",
     level: "Lv.2",
-    type: "Emoji",
-    text: "猜一句歌詞",
-    scenario: `🚌 📴 🌧️ 🏃 💨`,
+    type: "朋友圈",
+    title: "從『不發』的東西，能看出這個人在防備什麼？",
+    scenario: `一個人發朋友圈的 5 個『從不』：
+
+🚫 從不發自己的照片
+🚫 從不發定位
+🚫 從不發負面情緒
+🚫 從不屏蔽任何人
+🚫 從不發和工作相關的內容
+
+✅ 但他每周都會發 2-3 條：美食、書摘、風景`,
     options: [
-      { letter: "A", text: "「雨下一整晚」" },
-      { letter: "B", text: "「在雨中奔跑」" },
-      { letter: "C", text: "「等不到大雨，包圍這城市」" },
-      { letter: "D", text: "「冷雨夜裡」" }
+      {
+        letter: "A",
+        text: "防被盜圖",
+        feedback: "你想得太簡單了。如果只是防盜圖，他會把朋友圈設置為『僅三天可見』，而不是花這麼多心思選擇性發布。這個人的控制欲遠超『防盜圖』這個層級。"
+      },
+      {
+        letter: "B",
+        text: "防人肉搜索",
+        feedback: "你是被社會新聞嚇到了。真正怕人肉的人，會直接關閉朋友圈，不會每周發 2-3 條。這個頻率說明他不是不想讓人知道，是想讓人知道他選擇讓人知道的那些。"
+      },
+      {
+        letter: "C",
+        text: "怕被別人利用",
+        isCorrect: true,
+        feedback: "你看穿了。這個組合說明他深諳職場政治：定位=被定位，照片=被截圖，負面情緒=被解讀為軟肋，工作內容=被當作邀功素材。他不是不社交，是每一條都經過了精心的『人設計算』。"
+      },
+      {
+        letter: "D",
+        text: "怕被前任看到",
+        feedback: "被前任看到的人通常會選擇『刪除朋友圈』，而不是這麼複雜地分門別類。而且他沒有屏蔽任何人——如果是前任，他會重點屏蔽。你把個體問題當成了普遍問題。"
+      }
     ],
-    correct: "B",
-    analysis: "🚌末班車+📴關機+🌧️雨+🏃跑+💨風——經典的「末班車來了但來不及」的失戀場景。雨中高鐵站狂奔，追的不是公車，是來不及說的再見。"
+    insight: "🎯 選 C 的人在職場上比較有經驗，識別得了這種精細化的朋友圈經營。"
   },
   {
     id: 8,
-    category: "Emoji密碼破譯",
-    level: "Lv.3",
-    type: "Emoji",
-    text: "猜粵語口語",
-    scenario: `🍚 🥡 🚽 👋`,
+    category: "抖音心理學",
+    level: "Lv.2",
+    type: "抖音",
+    title: "一個女生的抖音收藏夾暴露了什麼？",
+    scenario: `一個女生的抖音收藏（30 個視頻）：
+
+━━━━ 💕 情感類（18 個）━━━━
+• 男朋友的5個表現說明他愛你
+• 第一次約會去什麼地方
+• 如何看出他是否在撒謊
+• 備胎的3個特徵
+• 摩羯座男生的暗戀信號
+• 暗戀一個人會有的9個細節
+
+━━━━ 🍳 生活類（8 個）━━━━
+• 5分鐘早餐
+• 房間收納術
+• 平價護膚品測評
+
+━━━━ 📚 學習類（4 個）━━━━
+• 英語口語
+• Excel 技巧`,
     options: [
-      { letter: "A", text: "食完飯去廁所" },
-      { letter: "B", text: "食自己（吃自己，即「完蛋了」）" },
-      { letter: "C", text: "外賣加飯和例水" },
-      { letter: "D", text: "食之無味，棄之可惜" }
+      {
+        letter: "A",
+        text: "正在戀愛中",
+        feedback: "正在戀愛的女生抖音收藏裡，『摩羯座暗戀信號』和『備胎特徵』會被自動忽略。她收藏的全是『識別』類的視頻，說明她現在還沒有確定的對象。"
+      },
+      {
+        letter: "B",
+        text: "失戀中",
+        feedback: "失戀的女生抖音收藏會被悲傷音樂和前任回憶刷屏，不會這麼有條理地學英語和 Excel。她的情緒穩定，不在失戀期。"
+      },
+      {
+        letter: "C",
+        text: "暗戀某人（單身中）",
+        isCorrect: true,
+        feedback: "你看穿了。18 個情感類視頻裡有 9 個是『識別暗戀信號』和『備胎特徵』，這不是無聊亂刷，是帶著強烈目的在學。她已經有喜歡的人了，但對方還不知道她存在。Excel 和英語說明她試圖用學習來轉移注意力。"
+      },
+      {
+        letter: "D",
+        text: "被渣男傷害過",
+        feedback: "被渣男傷害過的女生，抖音收藏會出現大量『如何放下前任』和『識別控制狂』。但她的收藏裡沒有——她現在的狀態是『期待』而不是『防備』。"
+      }
     ],
-    correct: "B",
-    analysis: "🍚飯+🥡外賣=食，🚽🚽=自己（諧音梗：🚽普通話發音「ce」≈粵語「屎」），👋=無。「食自己」在粵語口語中是「靠自己」「自生自滅」的意思，延伸為「完蛋了、自己坑自己」。"
+    insight: "💗 選 C 的人通常自己就是『暗戀中』或者剛從暗戀中走出來。"
   },
-  // 桌面截圖推理
   {
     id: 9,
-    category: "手機桌面截圖推理",
+    category: "鬧鐘心理學",
     level: "Lv.2",
-    type: "桌面",
-    text: "這個人的月收入最可能在哪個區間？",
-    scenario: `【手機桌面截圖描述】
+    type: "鬧鐘",
+    title: "從鬧鐘設置能看出這個人的什麼？",
+    scenario: `一個人的 iPhone 鬧鐘設置：
 
-第一屏App佈局：
-左側一排：微信、釘釘、飛書、Outlook
-右側：京東、淘寶、餓了麼
-最上方：人民銀行App、招商銀行App
-中部：王者榮耀（圖標在更新中）、抖音
-底部Dock欄：電話、相冊、支付寶、相機
-天氣Widget：深圳，34°C`,
+━━━━ ⏰ 工作日 ━━━━
+• 06:30 [貪睡模式]
+• 06:45 [貪睡模式]
+• 07:00 [正常]
+• 07:15 [正常]
+
+━━━━ ⏰ 週末 ━━━━
+• 09:00 [正常] (週六)
+• 09:00 [正常] (週日)
+• 11:30 [備註：買菜]
+
+其他：未設置睡眠排程，沒有任何提醒類鬧鐘`,
     options: [
-      { letter: "A", text: "5,000元以下" },
-      { letter: "B", text: "8,000–15,000元" },
-      { letter: "C", text: "20,000–40,000元" },
-      { letter: "D", text: "50,000元以上" }
+      {
+        letter: "A",
+        text: "早起困難戶",
+        feedback: "你只看到了表面現象。其實能設 4 個鬧鐘的，通常是『知道自己起不來』的人——這是一種自嘲式的自律。如果你也是這樣，說明你對自己誠實，但又不願意真的只設一個。"
+      },
+      {
+        letter: "B",
+        text: "生活有明確的節奏感",
+        isCorrect: true,
+        feedback: "你看穿了。工作日和週末的鬧鐘時間差是 2.5 小時，說明他的生活是有規劃的。但週末的 11:30 買菜備註暴露了兩個信號：1) 他要自己做飯/照顧家庭；2) 他把『買菜』當成重要事件，需要鬧鐘提醒——說明他最近很忙。"
+      },
+      {
+        letter: "C",
+        text: "他很焦慮，需要多重保障",
+        feedback: "你的判斷帶有情緒色彩。但 4 個工作日鬧鐘是大多數上班族的標配，不一定是焦慮。真正的焦慮型會設置 10 個以上的鬧鐘，而且會反覆修改備註。"
+      },
+      {
+        letter: "D",
+        text: "他是程序員/設計師",
+        feedback: "你被刻板印象誤導了。程序員確實有熬夜的習慣，但他們通常會把鬧鐘設到 10 點之後，而不是 6:30 開始。這個時間表更像是普通上班族或者公務員。"
+      }
     ],
-    correct: "C",
-    analysis: "信號：1) 同時有兩個銀行App+京東淘寶+餓了麼，典型都市白領消費組合。2) 人民銀行App=有財富管理需求，不是月光族。3) 王者榮耀在更新+使用京東/淘寶，休閒消費都有，是中高收入特徵。4) 深圳34°C=南方發達城市生活成本高，這套配置對應月收入2-4萬區間。"
+    insight: "⏰ 選 B 的人通常自己也過著有節奏的生活，能識別出細節裡的節奏感。"
   },
   {
     id: 10,
-    category: "手機桌面截圖推理",
+    category: "點讚政治學",
     level: "Lv.3",
-    type: "桌面",
-    text: "這個人的職業最可能是什麼？",
-    scenario: `【手機桌面截圖描述】
+    type: "點讚",
+    title: "從一條朋友圈的點讚名單，能看出什麼？",
+    scenario: `某人發了這條朋友圈：
 
-第一屏App佈局：
-左側一排：微信、WhatsApp、ZOOM、釘釘
-右側：Spotify、Netflix、Kindle
-中部：大段空白（只有一個備忘錄捷徑）
-底部Dock欄：電話、相冊、支付寶、相機
-天氣Widget：杭州，晴
-狀態欄：顯示「勿擾模式」已開啟`,
+「分享：[公眾號文章] 領導力不是管人，是影響人」
+配文：「共勉」
+
+━━━━ 點讚名單（按時間順序）━━━━
+1. 王總（部門總監）  — 0 秒
+2. 李姐（HR 主管）  — 1 分鐘
+3. 張工（同組同事）  — 3 分鐘
+4. 小美（實習生）    — 8 分鐘
+5. 老錢（十年老友）  — 22 分鐘
+
+評論：0 條`,
     options: [
-      { letter: "A", text: "互聯網產品經理" },
-      { letter: "B", text: "外企員工 / 遠程工作者" },
-      { letter: "C", text: "留學生 / 海外華人" },
-      { letter: "D", text: "公務人員 / 體制內" }
+      {
+        letter: "A",
+        text: "王總真的喜歡這篇文章",
+        feedback: "你太天真了。部門總監在自己下屬的朋友圈 0 秒點讚，而且文章還是『領導力』主題——他不是在表達喜歡，是在用最快的速度發出『我看著你呢』的信號。0 秒意味著他一直在刷這個下屬的朋友圈。"
+      },
+      {
+        letter: "B",
+        text: "這只是常規的職場社交",
+        feedback: "你低估了這個場景的戲劇性。常規的職場社交是『所有人差不多時間點讚』，而不是一個 0 秒、其他依次排列。而且 0 條評論說明大家都在觀望——這不是社交，是表演。"
+      },
+      {
+        letter: "C",
+        text: "發朋友圈的人要晉升了",
+        feedback: "你看到了『共勉』這個關鍵詞，但忽略了一個更明顯的信號：如果他要晉升，文章主題應該是『業務』或『業績』，而不是『領導力』。他在暗示自己準備好當領導——但這通常意味著他還沒當上。"
+      },
+      {
+        letter: "D",
+        text: "王總有別的暗示",
+        isCorrect: true,
+        feedback: "你看穿了 0 秒點讚的真正含義。在職場，『0 秒』意味著兩件事之一：1) 他一直在關注你，2) 他剛好就在朋友圈首頁——無論哪種，都是在表達『我看著你』。而且他選的時間是下班前，這時候點讚等同於在公開場合表態支持。後續如果你想讓王總晉升你，這個點讚是可以『兌現』的籌碼。"
+      }
     ],
-    correct: "B",
-    analysis: "信號：1) WhatsApp+ZOOM+Spotify+Netflix=典型的跨國遠程工作配置。2) 釘釘仍在，說明在中國境內工作但服務對象是海外。3) 勿擾模式開啟=不需要即時回覆，沒有體制內的即時響應壓力。4) 中部大段空白，桌面整潔，不是體制內那種需要及時處理政務消息的風格。"
+    insight: "👔 能選 D 的人已經半隻腳踏進了『職場政治』的圈子，識別得了這種精細化的社交信號。"
   }
 ];
 
@@ -765,21 +889,22 @@ let currentQ = 0;
 let userData = {
   streak: 0,
   lastDate: null,
-  answers: [], // {qid, correct, date}
+  answers: [],
   totalAnswered: 0,
-  totalCorrect: 0
+  totalCorrect: 0,
+  optionStats: {} // {qid: {A: 0, B: 0, ...}}
 };
 
 function loadData() {
   try {
-    const saved = localStorage.getItem('reasoningGame');
+    const saved = localStorage.getItem('reasoningGame_v2');
     if (saved) userData = JSON.parse(saved);
   } catch(e) {}
 }
 
 function saveData() {
   try {
-    localStorage.setItem('reasoningGame', JSON.stringify(userData));
+    localStorage.setItem('reasoningGame_v2', JSON.stringify(userData));
   } catch(e) {}
 }
 
@@ -790,10 +915,7 @@ function getToday() {
 
 function checkStreak() {
   const today = getToday();
-  if (userData.lastDate === today) {
-    // 今天已經玩過
-    return;
-  }
+  if (userData.lastDate === today) return;
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   const yStr = `${yesterday.getFullYear()}-${yesterday.getMonth()+1}-${yesterday.getDate()}`;
@@ -808,7 +930,7 @@ function checkStreak() {
 
 function getProfileTag() {
   const { totalCorrect, totalAnswered } = userData;
-  if (totalAnswered === 0) return "等待解鎖你的性格標籤";
+  if (totalAnswered < 3) return "完成 3 題解鎖你的專屬標籤";
   const rate = totalCorrect / totalAnswered;
   if (rate >= 0.9) return "🔮 人間透視者";
   if (rate >= 0.7) return "🧠 洞察大師";
@@ -817,30 +939,38 @@ function getProfileTag() {
   return "🎲 直覺型選手";
 }
 
-function getStyleText() {
-  const { answers } = userData;
-  if (answers.length < 5) return "完成10道題後解鎖...";
-  // 簡單統計各類型的準確率
-  const typeCorrect = {};
-  const typeTotal = {};
-  answers.forEach(a => {
-    const q = questions.find(q => q.id === a.qid);
-    if (!q) return;
-    const t = q.type;
-    typeTotal[t] = (typeTotal[t] || 0) + 1;
-    if (a.correct) typeCorrect[t] = (typeCorrect[t] || 0) + 1;
+function getStyleBreakdown() {
+  const stats = userData.optionStats;
+  const keys = Object.keys(stats);
+  if (keys.length === 0) return null;
+  const total = keys.reduce((s, k) => s + Object.values(stats[k]).reduce((a, b) => a + b, 0), 0);
+  if (total === 0) return null;
+  // 統計每個選項的選擇次數
+  const letterCount = { A: 0, B: 0, C: 0, D: 0 };
+  keys.forEach(qid => {
+    Object.keys(stats[qid]).forEach(letter => {
+      letterCount[letter] = (letterCount[letter] || 0) + stats[qid][letter];
+    });
   });
-  let best = "", bestRate = 0;
-  Object.keys(typeTotal).forEach(t => {
-    const r = (typeCorrect[t] || 0) / typeTotal[t];
-    if (r > bestRate) { bestRate = r; best = t; }
-  });
-  const tags = {
-    "朋友圈": "你對人際關係信號特別敏感，適合做公關或獵頭",
-    "Emoji": "你的抽象思維能力強，最適合創意類工作",
-    "桌面": "你善於觀察行為細節，天生具有分析能力"
+  const sum = Object.values(letterCount).reduce((a, b) => a + b, 0);
+  return Object.keys(letterCount).map(l => ({
+    letter: l,
+    count: letterCount[l],
+    pct: Math.round(letterCount[l] / sum * 100)
+  })).sort((a, b) => b.pct - a.pct);
+}
+
+function getPreferenceText() {
+  const breakdown = getStyleBreakdown();
+  if (!breakdown) return "完成更多題目後解鎖...";
+  const top = breakdown[0];
+  const preferenceMap = {
+    A: "你傾向於『務實型』思維——第一反應找最直接的解釋",
+    B: "你傾向於『關係型』思維——喜歡從人和人之間找答案",
+    C: "你傾向於『深層型』思維——會繞到表面背後的動機",
+    D: "你傾向於『非主流型』思維——不願意被選項限制"
   };
-  return tags[best] || "你是全能型推理選手，沒有明顯短板";
+  return preferenceMap[top.letter] + `。你最常選 ${top.letter} 選項（${top.pct}%），這是 ${top.count} 次選擇的累積。`;
 }
 
 // ============ 渲染 ============
@@ -854,11 +984,12 @@ function renderQuestion() {
       </div>
       <div class="question-content">
         <div class="question-type">${q.level} · ${q.type}</div>
-        <div class="question-text">${q.text}</div>
-        ${q.scenario ? `<div class="screenshot-mock"><div class="screenshot-header"><div class="screenshot-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div><span class="screenshot-title">${q.category}</span></div><div class="screenshot-body"><div class="screenshot-text">${q.scenario.replace(/\n/g, '<br>')}</div></div></div>` : ''}
+        <div class="question-title">${q.title}</div>
+        <div class="scenario-box">${q.scenario}</div>
       </div>
     </div>
-    <div class="options">
+
+    <div class="options" id="optionsArea">
       ${q.options.map(opt => `
         <button class="option-btn" data-letter="${opt.letter}" onclick="selectOption('${opt.letter}')">
           <div class="option-letter">${opt.letter}</div>
@@ -866,56 +997,82 @@ function renderQuestion() {
         </button>
       `).join('')}
     </div>
-    <div class="result-panel" id="resultPanel">
-      <div class="result-header">
-        <div class="result-emoji" id="resultEmoji"></div>
-        <div class="result-label" id="resultLabel"></div>
-      </div>
-      <div class="result-analysis">
-        <div class="analysis-title">📋 推理解析</div>
-        <div class="analysis-text" id="analysisText"></div>
-      </div>
-    </div>
-    <div class="share-section" id="shareSection" style="display:none;">
+
+    <div class="result-section hidden" id="resultSection"></div>
+
+    <div class="share-section hidden" id="shareSection">
       <button class="share-btn" onclick="shareQuestion()">
         🔗 分享給朋友挑戰
       </button>
     </div>
-    <div class="next-btn" id="nextBtn" onclick="nextQuestion()">
-      ${currentQ < questions.length - 1 ? '下一題 →' : '🎉 已經玩完了，分享戰績！'}
-    </div>
+
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+      ${currentQ < questions.length - 1 ? '下一題 →' : '🎉 玩完了，再玩一遍！'}
+    </button>
   `;
   document.getElementById('questionArea').innerHTML = html;
 }
 
 function selectOption(letter) {
   const q = questions[currentQ];
-  const isCorrect = letter === q.correct;
+  const option = q.options.find(o => o.letter === letter);
+  const isCorrect = option.isCorrect;
 
   // 記錄答案
   userData.totalAnswered += 1;
   if (isCorrect) userData.totalCorrect += 1;
-  userData.answers.push({ qid: q.id, correct: isCorrect, date: getToday() });
+  userData.answers.push({ qid: q.id, choice: letter, correct: isCorrect, date: getToday() });
+  if (!userData.optionStats[q.id]) userData.optionStats[q.id] = { A: 0, B: 0, C: 0, D: 0 };
+  userData.optionStats[q.id][letter] += 1;
   saveData();
   updateStats();
 
-  // 禁用所有按鈕
+  // 禁用所有按鈕 + 標記對錯
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.classList.add('disabled');
-    if (btn.dataset.letter === q.correct) btn.classList.add('correct');
+    if (btn.dataset.letter === q.options.find(o => o.isCorrect).letter) btn.classList.add('correct');
     if (btn.dataset.letter === letter && !isCorrect) btn.classList.add('wrong');
   });
 
-  // 顯示結果
-  const panel = document.getElementById('resultPanel');
-  panel.classList.add('show', isCorrect ? 'correct' : 'wrong');
-  document.getElementById('resultEmoji').textContent = isCorrect ? '✅' : '❌';
-  document.getElementById('resultLabel').textContent = isCorrect ? '答對了！' : '答錯了';
-  document.getElementById('analysisText').textContent = q.analysis;
+  // 構建反饋區
+  const resultHTML = `
+    <div class="user-choice-card ${isCorrect ? 'correct' : 'wrong'}" style="margin-top: 16px;">
+      <div class="user-choice-header">
+        <div class="result-icon">${isCorrect ? '✅' : '❌'}</div>
+        <div class="result-label">你選了 ${letter}：${option.text}</div>
+      </div>
+      <div class="user-choice-text">${isCorrect ? '「你的直覺是對的」' : '「你的思路是這樣的」'}</div>
+      <div class="user-feedback">${option.feedback}</div>
+    </div>
 
-  // 顯示分享和下一題
-  document.getElementById('shareSection').style.display = 'block';
+    ${!isCorrect ? `
+      <div class="correct-answer-card">
+        <div class="header-row">
+          <span class="correct-tag">正解</span>
+          <span class="correct-text">${q.options.find(o => o.isCorrect).letter}: ${q.options.find(o => o.isCorrect).text}</span>
+        </div>
+      </div>
+    ` : ''}
+
+    <div class="insight-card">
+      <div class="insight-header">
+        <div class="insight-icon">💡</div>
+        <div class="insight-title">推理風格洞察</div>
+      </div>
+      <div class="insight-text">${q.insight}</div>
+    </div>
+  `;
+  const resultSection = document.getElementById('resultSection');
+  resultSection.innerHTML = resultHTML;
+  resultSection.classList.remove('hidden');
+
+  document.getElementById('shareSection').classList.remove('hidden');
   document.getElementById('nextBtn').style.display = 'block';
+
+  // 滾動到結果區
+  setTimeout(() => {
+    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function nextQuestion() {
@@ -923,19 +1080,19 @@ function nextQuestion() {
   checkStreak();
   updateStats();
   renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function shareQuestion() {
   const q = questions[currentQ];
-  const text = `👁️ 人間推理師｜${q.category} ${q.level}\n\n"${q.text}"\n\n來挑戰試試？`;
+  const text = `👁️ 人間推理師｜${q.category} ${q.level}\n\n"${q.title}"\n\n來挑戰試試？`;
   if (navigator.share) {
     navigator.share({ title: '👁️ 人間推理師', text });
   } else {
-    // 複製到剪貼板
     navigator.clipboard.writeText(text).then(() => {
       alert('題目已複製，發給朋友挑戰吧！');
     }).catch(() => {
-      alert('👆 長按選擇「複製」題目');
+      prompt('複製這段文字發給朋友：', text);
     });
   }
 }
@@ -948,8 +1105,30 @@ function updateStats() {
   document.getElementById('statCorrect').textContent = userData.totalCorrect;
   document.getElementById('statStreak').textContent = userData.streak;
   document.getElementById('profileTag').textContent = getProfileTag();
-  document.getElementById('styleText').textContent = getStyleText();
-  document.getElementById('profileName').textContent = userData.totalAnswered >= 10 ? getProfileTag().replace(/^[^\s]+\s/, '') : '推理見習生';
+  document.getElementById('preferenceText').textContent = getPreferenceText();
+
+  const breakdown = getStyleBreakdown();
+  if (breakdown && breakdown.length > 0) {
+    document.getElementById('styleBreakdown').style.display = 'block';
+    document.getElementById('styleRows').innerHTML = breakdown.map(b => `
+      <div class="style-row">
+        <div class="style-name">${b.letter} 選項</div>
+        <div class="style-bar"><div class="style-bar-fill" style="width: ${b.pct}%;"></div></div>
+        <div class="style-pct">${b.pct}%</div>
+      </div>
+    `).join('');
+  }
+
+  // 根據答題數升級名字
+  if (userData.totalAnswered >= 30) {
+    document.getElementById('profileName').textContent = '人間透視者';
+  } else if (userData.totalAnswered >= 15) {
+    document.getElementById('profileName').textContent = '洞察大師';
+  } else if (userData.totalAnswered >= 5) {
+    document.getElementById('profileName').textContent = '觀察員';
+  } else {
+    document.getElementById('profileName').textContent = '推理見習生';
+  }
 }
 
 function renderHistory() {
@@ -958,14 +1137,14 @@ function renderHistory() {
     list.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-dim); font-size:13px;">還沒有答題記錄</div>';
     return;
   }
-  const recent = [...userData.answers].reverse().slice(0, 20);
+  const recent = [...userData.answers].reverse().slice(0, 30);
   list.innerHTML = recent.map(a => {
     const q = questions.find(q => q.id === a.qid);
     if (!q) return '';
     return `
       <div class="archive-item">
-        <div class="archive-q">${q.text}</div>
-        <div class="archive-result ${a.correct ? 'correct' : 'wrong'}">${a.correct ? '✓' : '✗'}</div>
+        <div class="archive-q">${q.title}</div>
+        <div class="archive-result ${a.correct ? 'correct' : 'wrong'}">${a.choice} ${a.correct ? '✓' : '✗'}</div>
       </div>
     `;
   }).join('');
@@ -978,6 +1157,7 @@ function switchTab(tab) {
   document.getElementById('page-' + tab).classList.add('active');
   if (tab === 'profile') updateStats();
   if (tab === 'history') renderHistory();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============ 初始化 ============
